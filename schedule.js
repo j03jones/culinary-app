@@ -1,6 +1,12 @@
 (() => {
   'use strict';
-  const courses = window.SCHEDULE_DATA;
+  const courses = (() => {
+    try {
+      const custom = localStorage.getItem('CULINARY_CUSTOM_SCHEDULE');
+      if (custom) return JSON.parse(custom);
+    } catch(e) {}
+    return window.SCHEDULE_DATA;
+  })();
   const $ = id => document.getElementById(id);
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const date = iso => new Date(iso + 'T12:00:00Z');
@@ -70,7 +76,7 @@
       pdf.setDrawColor(75);pdf.setLineWidth(2);pdf.line(28,28,764,28);
       text('ASU-NEWPORT / CULINARY ARTS',28,48,10,'bold');
       text('Week of '+range(),28,72,17,'bold');
-      text(filterName()+' / Chef Jan Criswell',28,91,10);
+      text(filterName()+' / Chef Joseph Jones',28,91,10);
       const colW=170,gap=18;
       for(let i=0;i<4;i++){
         const day=add(week,i),x=28+i*(colW+gap);let y=120;

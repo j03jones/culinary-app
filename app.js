@@ -39,9 +39,20 @@
       // may disallow framing even when they share this app's origin.
       const base = new URL(frames[id].dataset.dir, location.href);
       if (base.origin !== location.origin) throw new Error('Invalid class origin');
+
+      // Inject custom data from localStorage if modified
+      let customDataScript = '';
+      try {
+        const stored = localStorage.getItem('CULINARY_CUSTOM_DATA_' + id);
+        if (stored) {
+          customDataScript = '<script>window.CUSTOM_DATA=' + stored.replace(/</g, '\\u003c') + ';<\/script>';
+        }
+      } catch (e) {}
+
       const preamble = '<base href="' + base.href.replace(/&/g, '&amp;').replace(/"/g, '&quot;') + '">' +
-        '<script>window.COURSE_SEARCH=' + JSON.stringify(search).replace(/</g, '\\u003c') + ';<\/script>';
-      frames[id].setAttribute('sandbox', 'allow-scripts');
+        '<script>window.COURSE_SEARCH=' + JSON.stringify(search).replace(/</g, '\\u003c') + ';<\/script>' +
+        customDataScript;
+      frames[id].setAttribute('sandbox', 'allow-scripts allow-same-origin');
       frames[id].srcdoc = window.CLASS_PAGES[id].replace('<head>', '<head>' + preamble);
       frames[id].dataset.loaded = '1';
     } else {
@@ -61,6 +72,18 @@
       bar: 'Bar & Beverage'
     }[id]);
   }
+
+  // Reload an iframe when data is updated in the Admin panel
+  window.reloadClass = function(id) {
+    if (frames[id]) {
+      delete frames[id].dataset.loaded;
+      frames[id].removeAttribute('data-loaded');
+      if (current === id) {
+        current = null;
+        activate(id, false);
+      }
+    }
+  };
 
   /* hash routing */
   function fromHash() {

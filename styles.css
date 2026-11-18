@@ -67,10 +67,11 @@ body{
   line-height:1.15;
   letter-spacing:.01em;
 }
+.shell-nav-actions{display:flex;align-items:center;gap:12px}
 .schedule-link{color:var(--shell-ink);font-size:var(--text-xs);text-decoration:none;border-bottom:1px solid var(--shell-muted);padding:8px 0;white-space:nowrap}
 .schedule-link:hover{color:var(--accent-culinary2)}
 .schedule-link:focus-visible{outline:2px solid var(--shell-ink);outline-offset:4px}
-@media(max-width:440px){.shellbar-inner{position:relative}.brand-text .eyebrow{letter-spacing:.04em;font-size:var(--text-xs)}.brand{gap:7px;width:100%}.brand-mark{display:none}.schedule-link{position:absolute;right:12px;top:26px;padding:2px 0}}
+@media(max-width:440px){.shellbar-inner{position:relative}.brand-text .eyebrow{letter-spacing:.04em;font-size:var(--text-xs)}.brand{gap:7px;width:100%}.brand-mark{display:none}.shell-nav-actions{position:absolute;right:12px;top:24px}.schedule-link{padding:2px 0}}
 
 /* ---------- class switch pills ---------- */
 .class-switch{

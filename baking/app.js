@@ -1,6 +1,6 @@
 (() => {
 'use strict';
-const D = window.DATA;
+const D = window.CUSTOM_DATA || (window.localStorage && JSON.parse(localStorage.getItem("CULINARY_CUSTOM_DATA_baking") || "null")) || window.DATA;
 const $ = (s, el = document) => el.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const view = $('#view');
