@@ -1,0 +1,65 @@
+:root{--paper:#fffdf8;--ink:#252b26;--muted:#655f54;--line:#d9d1c2;--ember:#93401d;--text-xl:clamp(1.5rem,1.2rem + 1.25vw,2.25rem)}
+.schedule-body{height:auto;min-height:100vh;background:#f4f0e8;color:var(--ink)}
+.schedule-top{background:#1e2420;color:#f4f0e8;display:flex;justify-content:space-between;gap:20px;padding:18px max(24px,calc((100% - 1200px)/2));font-size:var(--text-sm)}
+.schedule-top a{color:inherit;text-decoration:none}
+.schedule-main{max-width:1248px;padding:36px 24px 48px;margin:auto}
+.page-intro{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:28px}
+.overline{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);line-height:1.5}
+.page-intro h1{font:600 var(--text-xl)/1.25 var(--font-display);margin:6px 0 8px}
+.intro-text{color:var(--muted);font-size:var(--text-base);line-height:1.5}
+.actions{display:flex;gap:8px;flex-shrink:0}
+button,select{font:500 var(--text-sm)/1.3 var(--font-body);border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);min-height:44px}
+button{padding:10px 16px;cursor:pointer}
+button:hover:not(:disabled){border-color:var(--ember);background:#f2e6d7}
+button:disabled{opacity:.4;cursor:not-allowed}
+button.primary{background:#9b451e;color:white;border-color:#9b451e}
+button.primary:hover{background:#7e3516;color:white}
+button:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid #93401d;outline-offset:3px}
+.schedule-controls{display:flex;align-items:flex-end;gap:16px;background:#eae3d6;padding:16px;border:1px solid var(--line);border-radius:12px}
+.schedule-controls label{display:flex;flex-direction:column;gap:6px;font-size:var(--text-xs);font-weight:600;color:var(--muted)}
+select{padding:9px 36px 9px 12px;width:100%;max-width:100%}
+.week-field{flex:1}
+.week-arrows{display:flex;gap:6px}
+.print-help{font-size:var(--text-xs);line-height:1.6;color:var(--muted);margin:12px 0 20px}
+#downloadStatus{font-size:var(--text-sm);margin-bottom:12px}
+#downloadStatus:empty{display:none}
+.week-sheet{border:1px solid var(--line);border-top:4px solid #1e2420;background:var(--paper);padding:28px;border-radius:3px;box-shadow:0 8px 25px #302b2110}
+.sheet-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:22px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.sheet-heading h2{font:600 var(--text-lg)/1.35 var(--font-display);margin:6px 0}
+#filterHeading{font-size:var(--text-sm);color:var(--muted)}
+.sheet-season{font-size:var(--text-xs);line-height:1.5;letter-spacing:.12em;text-align:right;color:var(--muted)}
+.week-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;min-height:370px}
+.day-column{min-width:0}
+.day-heading{padding:0 0 12px;margin-bottom:16px;border-bottom:2px solid #d9d1c2;font-size:var(--text-sm);line-height:1.5}
+.day-heading time{display:block;color:var(--muted);font-weight:400;font-size:var(--text-xs)}
+.class-session{padding:0 0 18px;margin-bottom:18px;border-bottom:1px solid #e7dfd1;break-inside:avoid}
+.class-name{font-size:var(--text-xs);font-weight:600;letter-spacing:.03em;color:var(--ember);margin-bottom:7px}
+.class-session.baking .class-name{color:#804515}
+.class-session.bar .class-name{color:#365e37}
+.session-time,.session-room{font-size:var(--text-xs);line-height:1.6;color:var(--muted)}
+.lesson-title{font-size:var(--text-base);font-weight:600;line-height:1.4;margin:9px 0}
+.recipes{font-size:var(--text-xs);line-height:1.65;color:#514d44;overflow-wrap:anywhere}
+.recipes b{font-weight:600}
+.empty-day{font-size:var(--text-sm);line-height:1.6;color:var(--muted);padding-top:8px}
+.sheet-footer{border-top:1px solid var(--line);margin-top:20px;padding-top:14px;display:flex;justify-content:space-between;gap:24px;color:var(--muted);font-size:var(--text-xs);line-height:1.5}
+.sheet-footer span{max-width:48%}
+@media(max-width:850px){.week-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.page-intro{align-items:flex-start;flex-direction:column}.sheet-footer{flex-direction:column;gap:8px}.sheet-footer span{max-width:none}}
+@media(max-width:500px){.schedule-top{padding:16px;flex-wrap:wrap;gap:8px}.schedule-top span{display:none}.schedule-main{padding:24px 16px}.schedule-controls{flex-wrap:wrap;gap:12px}.schedule-controls label{width:100%}.schedule-controls .week-field{flex:1;min-width:150px}.week-arrows button{padding:10px 12px}.week-sheet{padding:20px}.week-grid{grid-template-columns:1fr;gap:16px}.sheet-season{display:none}.day-heading{background:#f2ede3;padding:10px;border-bottom:0}.class-session{margin-left:10px;margin-right:10px}.week-grid{min-height:0}}
+@page{size:letter landscape;margin:.4in}
+@media print{
+html,body{height:auto!important;background:white!important;color:#111!important}
+.schedule-top,.page-intro,.schedule-controls,.print-help,#downloadStatus{display:none!important}
+.schedule-main{max-width:none;padding:0;margin:0}
+.week-sheet{box-shadow:none;border:0;border-top:3px solid #222;padding:12px 0 0}
+.sheet-heading{padding-bottom:10px;margin-bottom:14px}
+.sheet-heading h2{font-size:18pt}.overline,.sheet-season,#filterHeading{font-size:9pt}
+.week-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;min-height:0}
+.day-heading{font-size:11pt;background:none;padding:0 0 8px;border-bottom:1px solid #777}
+.day-heading time,.class-name,.session-time,.session-room,.recipes,.sheet-footer{font-size:9pt}
+.class-session{margin:0 0 10px;padding-bottom:10px}
+.lesson-title{font-size:11pt;margin:5px 0;line-height:1.3}
+.day-heading{margin-bottom:12px}
+.session-time,.session-room{line-height:1.35}
+.recipes{line-height:1.3}.sheet-footer{display:flex;flex-direction:row;margin-top:8px;padding-top:8px}
+.sheet-season{display:block}.sheet-footer span{max-width:48%}
+}
